@@ -1,0 +1,29 @@
+## GATEWAY CONFIG
+spring:
+  application:
+    name: core-gateway
+  cloud:
+    gateway:
+      routes:
+#        USER SERVICE
+        - id: core-user-service
+          uri: lb://core-user-service
+          predicates:
+            - Path=/user/**4
+          filters:
+            - StripPrefix=1
+#          TRF SERVICE
+        - id: core-transfer-service
+          uri: lb://core-transfer-service
+          predicates:
+            - Path=/transfer/**
+          filters:
+            - StripPrefix=1
+
+server:
+  port: 8082
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8081/eureka
