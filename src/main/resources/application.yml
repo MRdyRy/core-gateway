@@ -9,17 +9,37 @@ spring:
         - id: core-user-service
           uri: lb://core-user-service
           predicates:
-            - Path=/user/**4
+            - Path=/user/**
           filters:
             - StripPrefix=1
 #          TRF SERVICE
-        - id: core-transfer-service
-          uri: lb://core-transfer-service
+        - id: core-wallet-service
+          uri: lb://core-wallet-service
           predicates:
-            - Path=/transfer/**
+            - Path=/wallet/**
           filters:
             - StripPrefix=1
-
+#          NOTIF REPORT SERVICE
+        - id: core-report-service
+          uri: lb://core-report-service
+          predicates:
+            - Path=/report/**
+          filters:
+            - StripPrefix=1
+#          PARAMETER SERVICE
+        - id: core-parameter-service
+          uri: lb://core-parameter-service
+          predicates:
+            - Path=/parameter/**
+          filters:
+            - StripPrefix=1
+#          AUDIT SERVICE
+        - id: core-audit-service
+          uri: lb://core-audit-service
+          predicates:
+            - Path=/audit/**
+          filters:
+            - StripPrefix=1
 server:
   port: 8082
 
